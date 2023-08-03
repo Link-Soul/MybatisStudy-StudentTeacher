@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--    映射配置文件-->
+<mapper namespace="com.link.dao.StudentDao">
+
+    <resultMap id="studentResult" type="com.link.pojo.Student">
+        <id column="id" property="id"/>
+        <result column="sname" property="sname"/>
+        <result column="age" property="age"/>
+        <result column="tid" property="tid"/>
+        <!--多对一用association         并且不需要考虑主键。  -->
+        <association property="teacher" javaType="com.link.pojo.Teacher">
+            <id column="tid" property="tid"/>
+            <result column="tname" property="tname"/>
+        </association>
+    </resultMap>
+
+    <select id="findAll" resultMap="studentResult">
+        select t.* , s.* from teacher t left join student s on t.tid = s.tid
+    </select>
+
+
+
+</mapper>

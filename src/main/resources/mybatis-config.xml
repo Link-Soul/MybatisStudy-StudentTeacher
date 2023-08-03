@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--    核心配置文件-->
+<configuration>
+
+    <!--    <settings>-->
+    <!--&lt;!&ndash;        <setting name="logImpl" value="STDOUT_LOGGING"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <setting name="mapUnderscoreToCamelCase" value="False"/>&ndash;&gt;-->
+    <!--        &lt;!&ndash;与log4j共同使用好像用的还是log4j&ndash;&gt;-->
+    <!--    </settings>-->
+    <!--
+        <typeHandlers>
+            <typeHandler handler="com.link"/>
+        </typeHandlers>
+    -->
+
+
+
+    <!--        配置数据源-->
+    <environments default="development">
+        <!--可以配置多套环境用于多种场景。 default与environment中的id相匹配。-->
+
+        <!--第一套开发环境-->
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/08?useUnicode=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="1234"/>
+            </dataSource>
+        </environment>
+
+        <!--第二套环境-->
+        <environment id="development2">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/08?useUnicode=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="1234"/>
+            </dataSource>
+        </environment>
+
+
+    </environments>
+    <mappers>
+        <!--两种绑定方法：resource、class-->
+        <!--        进行绑定    绑定映射配置文件    -->
+        <mapper resource="StudentDao.xml"/>
+        <mapper resource="TeacherDao.xml"/>
+        <!--        <mapper class="com.link.UserDao"/>-->
+        <!--配置文件名和接口名必须完全一致     配置文件名必须与dao接口位于同一包下-->
+        <!--UserDao.xml 、 UserDao-->
+    </mappers>
+
+
+
+
+
+</configuration>
